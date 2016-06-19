@@ -104,6 +104,20 @@ class UserUtils {
         return base64_encode(hash("sha256", strtolower($username) . $password, true));
     }
 
+    /**
+    * Makes a page secure. Will redirect to login if unauthenticated
+    * or call a callback function if it is.
+    *
+    * @param $callback  The function to call if authenticated
+    */
+    public function secure($callback) {
+        if(this->loggedIn()) {
+            call_user_func($callback);
+        } else {
+            header("Location: /login/");
+        }
+    }
+
     public function username() {
         return $this->_username;
     }

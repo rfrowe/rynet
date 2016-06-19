@@ -12,6 +12,8 @@ $userutils->secure();
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>
-        <h2>Welcome, <?php echo $userutils->username() ?></h2>
+        <main>
+            <h2>Welcome, <?php echo $userutils->username() ?></h2>
+        </main>
     </body>
 </html>

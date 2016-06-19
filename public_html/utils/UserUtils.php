@@ -13,7 +13,6 @@ class UserUtils {
             $password = $user["password"];
             $user["token"] = password_hash($this->token($username, $password), PASSWORD_DEFAULT);
         }
-        echo "checking token";
         $this->_loggedIn = $this->checkToken();
     }
 

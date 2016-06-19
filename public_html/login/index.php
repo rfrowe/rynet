@@ -24,8 +24,8 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>
-        <div class="centered">
-            <form method="post">
+        <main>
+            <form method="post" class="centered">
                 <input type="text" name="username" />
                 <input type="password" name="password" />
                 <?php if($failure) { ?>
@@ -33,6 +33,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
                 <?php } ?>
                 <button>Log In</button>
             </form>
-        </div>
+        </main>
     </body>
 </html>

@@ -21,17 +21,31 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     <head>
         <title>rynet login</title>
         <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
+        <script>
+            $(function () {
+                $("#login_form").find("input").focus(toggleLabels);
+                $("#login_form").find("input").blur(toggleLabels);
+
+                function toggleLabels() {
+                    if($(this).val() === "") {
+                       $("label[for='"+$(this).attr('id')+"']").toggleClass("small");
+                    }
+                }
+            })
+        </script>
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>
         <main>
-            <form method="post" class="centered">
-                <input type="text" name="username" />
-                <input type="password" name="password" />
+            <form method="post" class="centered" id="login_form">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" />
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
                 <?php if($failure) { ?>
                 <div id="failure">Those credentials were invalid.</div>
                 <?php } ?>
-                <button>Log In</button>
+                <button id="login">Log In</button>
             </form>
         </main>
     </body>

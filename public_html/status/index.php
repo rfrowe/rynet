@@ -8,6 +8,7 @@ $userutils->secure();
 <html>
     <head>
         <title>rynet status</title>
+        <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>

@@ -20,6 +20,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
 <html>
     <head>
         <title>rynet login</title>
+        <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>

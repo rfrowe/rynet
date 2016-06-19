@@ -1,0 +1,17 @@
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header a {
+    float: left;
+}
+
+header #logo {
+    text-decoration: none;
+    color: unset;
+}
+
+header #logout_form {
+    float: right;
+}

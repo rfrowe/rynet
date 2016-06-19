@@ -52,6 +52,17 @@ class UserUtils {
     }
 
     /**
+    * Logs a user out by deleting their token
+    */
+    function logOut() {
+        unset($_COOKIE["token"]);
+        setcookie("token", "", time() - 3600, "/");
+        $this->_loggedIn = false;
+        unset($this->username);
+        unset($this->name);
+    }
+
+    /**
     * Verifies that a user's credentials match a set of valid credentials.
     *
     * @param $username  The user's username; case insensitive.

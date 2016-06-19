@@ -25,23 +25,27 @@ header #logout_form {
     margin-top: 0.5em;
 }
 
-header #logout {
-    height: 1.75em;
-    width: 5em;
-    font-size: 125%;
+button {
+    outline: none;
     border: none;
     border-radius: 0.15em;
     background-color: #0352A1;
     color: #CCC;
-    position: relative;
     box-shadow: 0em 0em 0.3em 0em #111;
     transition: all ease-in-out 0.3s;
 }
 
-header #logout:hover {
+button:hover, button:focus {
     color: #FFF;
     box-shadow: 0em 0em 0.5em 0.1em #111;
     transform: scale(1.05);
+}
+
+header #logout {
+    height: 1.75em;
+    width: 5em;
+    font-size: 125%;
+    position: relative;
 }
 
 header #logo {
@@ -60,4 +64,40 @@ html, body {
     font-family: Verdana, Geneva, sans-serif;
     margin: 0;
     background-color: #555;
+}
+
+#login_form {
+    width: 30%;
+    padding-top: 3em;
+}
+
+#login_form * {
+    width: 100%;
+    font-size: 150%;
+}
+
+#login_form input, button {
+    display: block;
+    margin-bottom: 1em;
+}
+
+#login_form label {
+    top: 1.25em;
+    color: #FFF;
+    position: relative;
+    transition: all ease-in-out 0.1s;
+}
+
+#login_form label.small {
+    transform: scale(1.05);
+    color: unset;
+    top: 0;
+}
+
+#login_form input {
+    border: none;
+    color: #FFF;
+    border-bottom: 1px solid #CCC;
+    outline: none;
+    background-color: unset;
 }

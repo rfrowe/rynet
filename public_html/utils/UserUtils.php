@@ -110,9 +110,11 @@ class UserUtils {
     *
     * @param $callback  The function to call if authenticated
     */
-    public function secure($callback) {
+    public function secure($callback = "") {
         if(this->loggedIn()) {
-            call_user_func($callback);
+            if(!empty($callback)) {
+                call_user_func($callback);
+            }
         } else {
             header("Location: /login/");
         }

@@ -8,11 +8,12 @@ $userutils->logOut();
 <html>
     <head>
         <title>rynet logout</title>
+        <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
     </head>
     <body>
         <?php include($_SERVER["DOCUMENT_ROOT"]."/utils/header.php") ?>
-        <div class="centered">
-            <h2>You have been logged out.</h2>
-        </div>
+        <main>
+            <h2 class="centered">You have been logged out.</h2>
+        </main>
     </body>
 </html>

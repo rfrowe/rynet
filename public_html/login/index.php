@@ -19,16 +19,18 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
 ?>
 <html>
     <head>
-        <title>Login</title>
+        <title>rynet login</title>
     </head>
     <body>
-        <form method="post">
-            <input type="text" name="username" />
-            <input type="password" name="password" />
-            <?php if($failure) { ?>
-            <div id="failure">Those credentials were invalid.</div>
-            <?php } ?>
-            <button>Log In</button>
-        </form>
+        <div class="centered">
+            <form method="post">
+                <input type="text" name="username" />
+                <input type="password" name="password" />
+                <?php if($failure) { ?>
+                <div id="failure">Those credentials were invalid.</div>
+                <?php } ?>
+                <button>Log In</button>
+            </form>
+        </div>
     </body>
 </html>

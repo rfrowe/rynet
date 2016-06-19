@@ -2,6 +2,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"]."/utils/UserUtils.php");
 $userutils = new UserUtils();
+$userutils->secure();
 
 ?>
 <html>

@@ -111,7 +111,7 @@ class UserUtils {
     * @param $callback  The function to call if authenticated
     */
     public function secure($callback = "") {
-        if(this->loggedIn()) {
+        if($this->loggedIn()) {
             if(!empty($callback)) {
                 call_user_func($callback);
             }

@@ -101,3 +101,13 @@ html, body {
     outline: none;
     background-color: unset;
 }
+
+#failure {
+    color: #FFF;
+    background-color: #ff0000;
+    border-radius: 0.15em;
+    margin-bottom: 1em;
+    font-size: 100%;
+    padding: 0 0.5em;
+    box-sizing: border-box;
+}

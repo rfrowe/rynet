@@ -114,7 +114,11 @@ class UserUtils {
             }
             $valid = $valid || $validUser;
         }
-        $diff = $this->_time - $_COOKIE[$this->_TIME_KEY];
+
+        $diff = $this->_time;
+        if(isset($_COOKIE[$this->_TIME_KEY])) {
+            $diff -= $_COOKIE[$this->_TIME_KEY];
+        }
         return ($valid && ($diff < $this->_SESSION_LENGTH || $tokenName == $this->_TOKEN_KEY)) ? $this->token($this->_username, $this->_password, $this->_time) : false;
     }
 

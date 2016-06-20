@@ -3,15 +3,26 @@
 class UserUtils {
     private $_credentials;
     private $_username;
+    private $_password;
     private $_name;
     private $_loggedIn;
+    private $_time;
+    private $_SESSION_LENGTH = 604800; // = 60 * 60 * 24 * 7 = 7 days
+    private $_TOKEN_KEY = "token";
+    private $_OLD_TOKEN_KEY = "oldtoken";
+    private $_TIME_KEY = "time";
+
 
     function __construct() {
         $this->_credentials = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/utils/credentials.json"), /* assoc */ true);
+        $this->_time = time();
         foreach($this->_credentials as &$user) {
             $username = $user["username"];
             $password = $user["password"];
-            $user["token"] = password_hash($this->token($username, $password), PASSWORD_DEFAULT);
+            if(isset($_COOKIE[$this->_TIME_KEY])) {
+                $user[$this->_OLD_TOKEN_KEY] = password_hash($this->token($username, $password, $_COOKIE[$this->_TIME_KEY]), PASSWORD_DEFAULT);
+            }
+            $user[$this->_TOKEN_KEY] = password_hash($this->token($username, $password, $this->_time), PASSWORD_DEFAULT);
         }
         $this->_loggedIn = $this->checkToken();
     }
@@ -22,7 +33,16 @@ class UserUtils {
     * @returns whether the user is logged in.
     */
     private function checkToken() {
-        return isset($_COOKIE["token"]) && $this->verifyToken($_COOKIE["token"]) ? true : false;
+        if(isset($_COOKIE[$this->_TOKEN_KEY]) && isset($_COOKIE[$this->_TIME_KEY])) {
+            $token = $this->verifyToken($_COOKIE[$this->_TOKEN_KEY], $this->_OLD_TOKEN_KEY);
+            if($token) {
+                setcookie($this->_TOKEN_KEY, $token, time() + $this->_SESSION_LENGTH, "/"); // One day
+                setcookie($this->_TIME_KEY, $this->_time, time() + $this->_SESSION_LENGTH, "/"); // One day
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -44,7 +64,8 @@ class UserUtils {
     function logIn($username, $password) {
         $token = $this->verifyCredentials($username, $password);
         if($token) {
-            setcookie("token", $token, time()+60*60*24, "/"); // One day
+            setcookie($this->_TOKEN_KEY, $token, time() + $this->_SESSION_LENGTH, "/"); // One day
+            setcookie($this->_TIME_KEY, $this->_time, time() + $this->_SESSION_LENGTH, "/"); // One day
             return true;
         } else {
             return false;
@@ -55,8 +76,10 @@ class UserUtils {
     * Logs a user out by deleting their token
     */
     function logOut() {
-        unset($_COOKIE["token"]);
-        setcookie("token", "", time() - 3600, "/");
+        unset($_COOKIE[$this->_TOKEN_KEY]);
+        unset($_COOKIE[$this->_TIME_KEY]);
+        setcookie($this->_TOKEN_KEY, "", time() - 3600, "/");
+        setcookie($this->_TIME_KEY, "", time() -3600, "/");
         $this->_loggedIn = false;
         unset($this->username);
         unset($this->name);
@@ -70,27 +93,29 @@ class UserUtils {
     * @return whether the credentials are valid.
     */
     private function verifyCredentials($username, $password) {
-        return $this->verifyToken($this->token($username, $password));
+        return $this->verifyToken($this->token($username, $password, $this->_time), $this->_TOKEN_KEY);
     }
 
     /**
     * Verifies that a token is valid.
     *
-    * @param $token The token to test.
+    * @param $token     The token to test.
+    * @param $tokenName The name of the token key in the user.
     * @return whether the login token is valid
     */
-    private function verifyToken($token) {
+    private function verifyToken($token, $tokenName) {
         $valid = false;
         foreach($this->_credentials as $user) {
-            $validUser = password_verify($token, $user["token"]);
+            $validUser = password_verify($token, $user[$tokenName]);
             if($validUser) {
                 $this->_username = $user["username"];
+                $this->_password = $user["password"];
                 $this->_name = $user["name"];
             }
             $valid = $valid || $validUser;
         }
-
-        return $valid ? $token : false;
+        $diff = $this->_time - $_COOKIE[$this->_TIME_KEY];
+        return ($valid && ($diff < $this->_SESSION_LENGTH || $tokenName == $this->_TOKEN_KEY)) ? $this->token($this->_username, $this->_password, $this->_time) : false;
     }
 
     /**
@@ -98,10 +123,11 @@ class UserUtils {
     *
     * @param $username  The user's username; case insensitive.
     * @param $password  The user's password.
+    * @param $time      The token time.
     * @return the token.
     */
-    private function token($username, $password) {
-        return base64_encode(hash("sha256", strtolower($username) . $password, true));
+    private function token($username, $password, $time) {
+        return base64_encode(hash("sha256", strtolower($username) . $password . $time, true));
     }
 
     /**

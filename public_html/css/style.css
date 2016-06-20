@@ -111,3 +111,18 @@ html, body {
     padding: 0 0.5em;
     box-sizing: border-box;
 }
+
+@media only screen and (max-width: 950px) {
+    main {
+        width: 90%;
+    }
+    #login_form {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 641px) {
+    #login_form {
+        width: 90%;
+    }
+}

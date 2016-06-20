@@ -5,6 +5,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/utils/UserUtils.php");
 $userutils = new UserUtils();
 
 $failure = false;
+$login = true;
 
 if(isset($_POST["username"]) && isset($_POST["password"])) {
     if($userutils->logIn($_POST["username"], $_POST["password"])) {

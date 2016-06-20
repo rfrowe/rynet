@@ -23,12 +23,14 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
         <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
         <script>
             $(function () {
-                $("#login_form").find("input").focus(toggleLabels);
-                $("#login_form").find("input").blur(toggleLabels);
+                $("#login_form").find("input").focus(toggleLabels).blur(toggleLabels).change(toggleLabels);
 
                 function toggleLabels() {
-                    if($(this).val() === "") {
-                       $("label[for='"+$(this).attr('id')+"']").toggleClass("small");
+                    var $label = $("label[for='"+$(this).attr('id')+"']");
+                    if($(this).val() === "" && $label.hasClass("small")) {
+                       $label.removeClass("small");
+                    } else if(!$label.hasClass("small")) {
+                        $label.addClass("small");
                     }
                 }
             })

@@ -143,4 +143,8 @@ html, body {
     header #logout {
         width: 100%;
     }
+
+    button:hover, button:focus {
+        transform: scale(1.025);
+    }
 }

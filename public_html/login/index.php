@@ -7,14 +7,14 @@ $userutils = new UserUtils();
 $failure = false;
 $login = true;
 
-if(isset($_POST["username"]) && isset($_POST["password"])) {
+if($userutils->loggedIn()) {
+    header("Location: /");
+} else if(isset($_POST["username"]) && isset($_POST["password"])) {
     if($userutils->logIn($_POST["username"], $_POST["password"])) {
         header("Location: /");
     } else {
         $failure = true;
     }
-} else if($userutils->loggedIn()) {
-    header("Location: /");
 }
 
 ?>

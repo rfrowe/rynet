@@ -32,7 +32,7 @@ button {
     background-color: #0352A1;
     color: #CCC;
     box-shadow: 0em 0em 0.3em 0em #111;
-    transition: all ease-in-out 0.3s;
+    transition: color ease-in 0.2s, box-shadow ease-in 0.2s, transform ease-in 0.2s;
 }
 
 button:hover, button:focus {
@@ -117,6 +117,84 @@ html, body {
     box-sizing: border-box;
 }
 
+#status_grid {
+    column-count: 2;
+    column-gap: 1em;;
+    width: 100%;
+}
+
+#status_grid section {
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 7%;
+    background-origin: content-box;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    background-color: #333;
+    border-radius: 0.25em;
+    display: inline-block;
+    width: 100%;
+}
+
+#status_grid aside {
+    display: table;
+    width: 100%;
+}
+
+#status_grid aside div, #status_grid aside h3  {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#status_grid div.status {
+    vertical-align: top;
+    text-align: right;
+}
+
+#status_grid aside h3 {
+    width: 80%;
+    font-size: 150%;
+    padding-left: 0.25em;
+}
+
+#status_grid aside img {
+    width: 100%;
+}
+
+#status_grid section.good {
+    background-image: url("/images/good.svg");
+}
+#status_grid section.bad {
+    background-image: url("/images/bad.svg");
+    background-color: #4D2121;
+}
+#status_grid section.unknown {
+    background-image: url("/images/unknown.svg");
+}
+
+#status_grid table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#status_grid tr td {
+    padding-top: 0.5em;
+}
+#status_grid table tr td:first-child {
+    padding-right: 0.25em;
+}
+#status_grid table tr td:nth-child(2) {
+    word-break: break-all;
+}
+#status_grid tr {
+    border-bottom: 1px solid #FFF;
+}
+#status_grid table tr:last-of-type {
+    border-bottom: none;
+}
+
 @media only screen and (max-width: 950px) {
     main {
         width: 90%;
@@ -126,9 +204,14 @@ html, body {
     }
 }
 
-@media only screen and (max-width: 641px) {
+@media only screen and (max-width: 666px) {
+    #status_grid div.stretchwrap {
+        width: 45%;
+        min-width: unset;
+    }
+
     main {
-            padding-top: 4em;
+        padding-top: 4em;
     }
 
     #login_form {
@@ -146,5 +229,9 @@ html, body {
 
     button:hover, button:focus {
         transform: scale(1.025);
+    }
+
+    #status_grid {
+        column-count: 1;
     }
 }

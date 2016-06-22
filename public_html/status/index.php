@@ -56,7 +56,7 @@ $userutils->secure();
                                 $td.append($subsection);
                                 $row.append($td);
                             } else {
-                                if (i == "Date") {
+                                if (i == "Uptime") {
                                     val = secondsToHms(val);
                                 }
                                 $row.append("<td>" + i + "</td>");

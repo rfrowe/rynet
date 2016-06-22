@@ -77,7 +77,7 @@ $userutils->secure();
                     var h = Math.floor(d / 3600);
                     var m = Math.floor(d % 3600 / 60);
                     var s = Math.floor(d % 3600 % 60);
-                    return ((h > 0 ? h + " hours, " + (m < 10 ? "0" : "") : "") + m + " minutes, " + (s < 10 ? "0" : "") + s + " seconds");
+                    return ((h > 0 ? h + " h, " + (m < 10 ? "0" : "") : "") + m + " m, " + (s < 10 ? "0" : "") + s + " s");
                 }
 
                 function isBoolean(variable) { return variable === true || variable === false; }

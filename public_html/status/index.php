@@ -47,6 +47,9 @@ $userutils->secure();
                         var $row = $("<tr></tr>");
                         if (i != "id") {
                             if (isBoolean(val)) {
+                                if(!val) {
+                                    status = false;
+                                }
                                 var $td = $("<td colspan='2'></td>");
                                 var $subsection = $("<section></section>");
                                 $subsection.append("<aside> \

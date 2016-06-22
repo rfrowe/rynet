@@ -32,19 +32,44 @@ $userutils->secure();
                         $.ajax(server.url, {
                             dataType: 'json',
                             success: populateServer,
-                            error: serverError,
-                            data: {id: server.name}
+                            error: function() {
+                                $section.addClass("bad");
+                            },
                         })
                     }
                 }
 
                 function populateServer(data, text, ajax) {
+                    var $section = $("#" + data.id);
+                    var $table = $("<table></table>");
+                    var status = true;
+                    $.each(data, function(i, val) {
+                        var $row = $("<tr></tr>");
+                        if (i != "id") {
+                            if (isBoolean(val)) {
+                                var $td = $("<td colspan='2'></td>");
+                                var $subsection = $("<section></section>");
+                                $subsection.append("<aside> \
+                                                    <h3>" + i + "</h3> \
+                                                    </aside>");
+                                $subsection.addClass(val ? "good" : "bad");
+                                $td.append($subsection);
+                                $row.append($td);
+                            } else {
+                                $row.append("<td>" + i + "</td>");
+                                $row.append("<td>" + val + "</td>");
+                            }
+                        }
+                        $table.append($row);
+                    });
+                    $section.addClass(status ? "good" : "unknown");
+                    $section.append($table);
 
+                    // Fix subsection borders
+                    $("td[colspan=2]").parent().css("border-bottom", "none");
                 }
 
-                function serverError(ajax, text, error) {
-
-                }
+                function isBoolean(variable) { return variable === true || variable === false; }
             });
         </script>
     </head>

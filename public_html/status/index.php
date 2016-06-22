@@ -11,14 +11,40 @@ $userutils->secure();
         <?php readfile($_SERVER["DOCUMENT_ROOT"]."/utils/imports.php") ?>
         <script>
             $(function() {
-                function resizeStatuses() {
-                    $(".stretchwrap").each(function () {
-                        $(this).css("padding-bottom",$(this).css("width"));
-                    });
+                $.ajax("/utils/servers.json", {
+                    dataType: 'json',
+                    success: populateGrid
+                });
+
+                function populateGrid(data) {
+                    console.log("fuck");
+                    var $statusGrid = $("#status_grid");
+                    for(var i = 0; i < data.length; i++) {
+                        var server = data[i];
+                        var $section = $("<section id=\"" + server.name + "\"></section>");
+                        $section.append(
+                            "<aside> \
+                                <div><img src=\"/images/" + server.icon + ".svg\" alt=\"" + server.icon + "\" /></div> \
+                                <h3>" + server.name + "</h3> \
+                             </aside>");
+                        $statusGrid.append($section);
+
+                        $.ajax(server.url, {
+                            dataType: 'json',
+                            success: populateServer,
+                            error: serverError,
+                            data: {id: server.name}
+                        })
+                    }
                 }
 
-                $(window).resize(resizeStatuses);
-                resizeStatuses();
+                function populateServer(data, text, ajax) {
+
+                }
+
+                function serverError(ajax, text, error) {
+
+                }
             });
         </script>
     </head>
@@ -27,7 +53,7 @@ $userutils->secure();
         <main>
             <h2>Welcome, <?php echo $userutils->name() ?></h2>
             <section id="status_grid">
-                <section class="good">
+                <!--<section class="good">
                     <aside>
                         <div><img src="/images/ubuntu.svg" alt="ubuntu" /></div>
                         <h3>Multivac</h3>
@@ -86,23 +112,7 @@ $userutils->secure();
                             <td>Running</td>
                         </tr>
                     </table>
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
-                <section class="unknown">
-                </section>
+                </section>-->
             </section>
         </main>
     </body>

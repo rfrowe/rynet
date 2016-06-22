@@ -136,12 +136,12 @@ html, body {
     border-radius: 0.25em;
     display: inline-block;
     width: 100%;
-    min-height: 3em;
 }
 
 #status_grid aside {
     display: table;
     width: 100%;
+    min-height: 3em;
 }
 
 #status_grid aside div, #status_grid aside h3  {
@@ -202,9 +202,11 @@ html, body {
     background-color: #666;
     color: #fff;
     margin-bottom: 0;
-    min-height: unset;
 }
 
+#status_grid section section aside {
+    min-height: unset;
+}
 #status_grid section section aside h3 {
     font-size: 100%;
 }

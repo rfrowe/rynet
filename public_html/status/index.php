@@ -62,7 +62,28 @@ $userutils->secure();
                                     val = secondsToHms(val);
                                 }
                                 $row.append("<td>" + i + "</td>");
-                                $row.append("<td>" + val + "</td>");
+
+                                if (val.total !== undefined) {
+                                    var $td = $("<td style=\"position: relative;\"></td>");
+                                    var $progress = $("<div class=\"progress\" />");
+
+                                    percentage = val.used / val.total;
+                                    $progress.css("width", (percentage * 100) + "%");
+
+                                    if(percentage < 0.5) {
+                                        $progress.css("background-color", "green");
+                                    } else if(percentage < 0.75) {
+                                        $progress.css("background-color", "orange");
+                                    } else {
+                                        $progress.css("background-color", "red");
+                                    }
+
+                                    $td.append("<div class=\"stat\">" + val.used + "/" + val.total + " MB</div>");
+                                    $td.append($progress);
+                                    $row.append($td);
+                                } else {
+                                    $row.append("<td>" + val + "</td>");
+                                }
                             }
                         }
                         $table.append($row);

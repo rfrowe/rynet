@@ -17,7 +17,6 @@ $userutils->secure();
                 });
 
                 function populateGrid(data) {
-                    console.log("fuck");
                     var $statusGrid = $("#status_grid");
                     for(var i = 0; i < data.length; i++) {
                         var server = data[i];
@@ -73,6 +72,10 @@ $userutils->secure();
 
                     // Fix subsection borders
                     $("td[colspan=2]").parent().css("border-bottom", "none");
+                    // Add sliders
+                    $section.children("aside").click(function() {
+                        $(this).siblings("table").toggle();
+                    });
                     updateLogo();
                 }
 

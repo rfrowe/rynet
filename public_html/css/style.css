@@ -132,10 +132,6 @@ html, body {
 }
 
 #status_grid section {
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 7%;
-    background-origin: content-box;
     overflow: hidden;
     box-sizing: border-box;
     margin-bottom: 1em;
@@ -150,6 +146,10 @@ html, body {
     display: table;
     width: 100%;
     min-height: 3em;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 7%;
+    background-origin: content-box;
 }
 
 #status_grid aside div, #status_grid aside h3  {
@@ -173,14 +173,15 @@ html, body {
     max-height: 4em;
 }
 
-#status_grid section.good {
+#status_grid section.good aside {
     background-image: url("/images/good.svg");
 }
-#status_grid section.bad {
+#status_grid section.bad aside {
     background-image: url("/images/bad.svg");
+} #status_grid section.bad {
     background-color: #4D2121;
 }
-#status_grid section.unknown {
+#status_grid section.unknown aside {
     background-image: url("/images/unknown.svg");
 }
 
@@ -205,8 +206,10 @@ html, body {
     border-bottom: none;
 }
 
-#status_grid section section {
+#status_grid section section aside {
     background-size: 4%;
+}
+#status_grid section section {
     background-color: #666;
     color: #fff;
     margin-bottom: 0;

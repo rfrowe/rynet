@@ -78,11 +78,12 @@ $userutils->secure();
 
                 function updateLogo() {
                     if  ($("#status_grid").children("section.good") == $("#status_grid").children("section")) {
-                        var text = $("#logo").text();
-                        var parts = $("#logo").text().split(" ");
+                        var text = $("#logo").html();
+                        var parts = $("#logo").html().split(" ");
                         if  (text.indexOf("<span>") == -1) {
-                            parts[$parts.length] = "<span>" + $parts[$parts.length] + "</span>";
+                            parts[parts.length - 1] = "<span>" + parts[parts.length - 1] + "</span>";
                         }
+                        $("#logo").html(parts.join(" "));
                         $("#logo").addClass("good");
                         $("#logo").removeClass("bad");
                     } else {

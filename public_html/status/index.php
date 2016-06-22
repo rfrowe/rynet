@@ -86,9 +86,9 @@ $userutils->secure();
 
                     if  ($("#status_grid").children("section.good") == $("#status_grid").children("section")) {
                         $("#logo").addClass("good");
-                        $("#logo").removeClass("bad");
+                        $("#logo").removeClass("unknown");
                     } else {
-                        $("#logo").addClass("bad");
+                        $("#logo").addClass("unknown");
                         $("#logo").removeClass("good");
                     }
                 }

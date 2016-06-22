@@ -73,6 +73,22 @@ $userutils->secure();
 
                     // Fix subsection borders
                     $("td[colspan=2]").parent().css("border-bottom", "none");
+                    updateLogo();
+                }
+
+                function updateLogo() {
+                    if  ($("#status_grid").children("section.good") == $("#status_grid").children("section")) {
+                        var text = $("#logo").text();
+                        var parts = $("#logo").text().split(" ");
+                        if  (text.indexOf("<span>") == -1) {
+                            parts[$parts.length] = "<span>" + $parts[$parts.length] + "</span>";
+                        }
+                        $("#logo").addClass("good");
+                        $("#logo").removeClass("bad");
+                    } else {
+                        $("#logo").addClass("bad");
+                        $("#logo").removeClass("good");
+                    }
                 }
 
                 function secondsToHms(d) {

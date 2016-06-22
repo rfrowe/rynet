@@ -52,6 +52,14 @@ header #logo {
     margin: 0;
 }
 
+header #logo.good span {
+    color: rgb(0, 224, 0);
+}
+
+header #logo.unknown span{
+    color: rgb(234, 232, 50);
+}
+
 main {
     width: 70%;
     padding-top: 1em;

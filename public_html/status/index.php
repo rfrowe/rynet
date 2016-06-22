@@ -56,6 +56,9 @@ $userutils->secure();
                                 $td.append($subsection);
                                 $row.append($td);
                             } else {
+                                if (i == "Date") {
+                                    val = secondsToHms(val);
+                                }
                                 $row.append("<td>" + i + "</td>");
                                 $row.append("<td>" + val + "</td>");
                             }
@@ -67,6 +70,14 @@ $userutils->secure();
 
                     // Fix subsection borders
                     $("td[colspan=2]").parent().css("border-bottom", "none");
+                }
+
+                function secondsToHms(d) {
+                    d = Number(d);
+                    var h = Math.floor(d / 3600);
+                    var m = Math.floor(d % 3600 / 60);
+                    var s = Math.floor(d % 3600 % 60);
+                    return ((h > 0 ? h + " hours, " + (m < 10 ? "0" : "") : "") + m + " minutes, " + (s < 10 ? "0" : "") + s + " seconds");
                 }
 
                 function isBoolean(variable) { return variable === true || variable === false; }

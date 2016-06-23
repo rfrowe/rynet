@@ -265,12 +265,7 @@ html, body {
     }
 }
 
-@media only screen and (max-width: 666px) {
-    #logo {
-        text-align: center;
-    }
-
-    main {
+@media only screen and (max-width: 666px) {main {
         padding-top: 4em;
     }
 

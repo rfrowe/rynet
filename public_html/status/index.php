@@ -108,7 +108,7 @@ $userutils->secure();
                         $("#logo").html(parts.join(" "));
                     }
 
-                    if  ($("#status_grid").children("section.good") == $("#status_grid").children("section")) {
+                    if  ($("#status_grid").children("section.good").length == $("#status_grid").children("section").length) {
                         $("#logo").addClass("good");
                         $("#logo").removeClass("unknown");
                     } else {

@@ -53,7 +53,7 @@ The API has two requirements.
     "Public IP":"xxx.xxx.xxx.xxx",
     "eth0":"yyy.yyy.yyy.yyy",
     "Service1":true,
-    "Servce2":true,
+    "Service2":true,
     "Service3":true,
     "Memory":{
         "total":1024,

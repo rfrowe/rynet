@@ -117,12 +117,14 @@ $userutils->secure();
                     }
                 }
 
-                function secondsToHms(d) {
-                    d = Number(d);
-                    var h = Math.floor(d / 3600);
-                    var m = Math.floor(d % 3600 / 60);
-                    var s = Math.floor(d % 3600 % 60);
-                    return ((h > 0 ? h + " h, " + (m < 10 ? "0" : "") : "") + m + " m, " + (s < 10 ? "0" : "") + s + " s");
+                function secondsToHms(seconds) {
+                    seconds = Number(seconds);
+                    var w = Math.floor(seconds / 604800);
+                    var d = Math.floor(seconds % 604800 / 86400);
+                    var h = Math.floor(seconds % 86400 / 3600);
+                    var m = Math.floor(seconds % 3600 / 60);
+                    var s = Math.floor(seconds % 3600 % 60);
+                    return (w > 0 ? w + "w, " : "") + (d > 0 ? d + "d, " : "") + (h > 0 ? (h < 10 ? "0" : "") + h + ":" : "") + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
                 }
 
                 function isBoolean(variable) { return variable === true || variable === false; }

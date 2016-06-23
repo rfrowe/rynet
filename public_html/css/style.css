@@ -185,7 +185,7 @@ html, body {
 } #status_grid section.bad {
     background-color: #4D2121;
 } #status_grid section section.bad {
-    background-color: #4D2121;
+    background-color: #8a4949;
 }
 #status_grid section.unknown aside {
     background-image: url("/images/unknown.svg");

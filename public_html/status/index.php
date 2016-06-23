@@ -102,11 +102,11 @@ $userutils->secure();
 
                 function updateLogo() {
                     var text = $("#logo").html();
-                    var parts = $("#logo").html().split(" ");
                     if  (text.indexOf("<span>") == -1) {
+                        var parts = $("#logo").html().split(" ");
                         parts[parts.length - 1] = "<span>" + parts[parts.length - 1] + "</span>";
+                        $("#logo").html(parts.join(" "));
                     }
-                    $("#logo").html(parts.join(" "));
 
                     if  ($("#status_grid").children("section.good") == $("#status_grid").children("section")) {
                         $("#logo").addClass("good");

@@ -71,11 +71,11 @@ $userutils->secure();
                                     $progress.css("width", (percentage * 100) + "%");
 
                                     if(percentage < 0.5) {
-                                        $progress.css("background-color", "green");
+                                        $progress.addClass("good");
                                     } else if(percentage < 0.75) {
-                                        $progress.css("background-color", "orange");
+                                        $progress.addClass("ehh")
                                     } else {
-                                        $progress.css("background-color", "red");
+                                        $progress.addClass("bad");
                                     }
 
                                     $td.append("<div class=\"stat\">" + val.used + "/" + val.total + " MB</div>");

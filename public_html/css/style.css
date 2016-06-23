@@ -175,13 +175,21 @@ html, body {
 
 #status_grid section.good aside {
     background-image: url("/images/good.svg");
+} #status_grid section section.good aside {
+    background-image: url("/images/good.svg");
 }
 #status_grid section.bad aside {
     background-image: url("/images/bad.svg");
+} #status_grid section section.bad aside {
+    background-image: url("/images/bad.svg");
 } #status_grid section.bad {
+    background-color: #4D2121;
+} #status_grid section section.bad {
     background-color: #4D2121;
 }
 #status_grid section.unknown aside {
+    background-image: url("/images/unknown.svg");
+} #status_grid section section.unknown aside {
     background-image: url("/images/unknown.svg");
 }
 

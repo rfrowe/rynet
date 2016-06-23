@@ -295,4 +295,8 @@ html, body {
     #status_grid {
         column-count: 1;
     }
+
+    #status_grid table {
+        display: none;
+    }
 }

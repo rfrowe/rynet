@@ -37,7 +37,7 @@ $userutils->secure();
                             error: function() {
                                 $(this.section).addClass("bad");
                             },
-                        })
+                        });
                     }
                 }
 

@@ -31,8 +31,11 @@ $userutils->secure();
                         $.ajax(server.url, {
                             dataType: 'json',
                             success: populateServer,
+                            context: {
+                                section: $section
+                            },
                             error: function() {
-                                $section.addClass("bad");
+                                $(this.section).addClass("bad");
                             },
                         })
                     }

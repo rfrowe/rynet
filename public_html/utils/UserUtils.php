@@ -131,7 +131,7 @@ class UserUtils {
     * @return the token.
     */
     private function token($username, $password, $time) {
-        return base64_encode(hash("sha256", strtolower($username) . $password . $time, true));
+        return base64_encode(hash("sha512", strtolower($username) . $password . $time, true));
     }
 
     /**

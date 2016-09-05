@@ -5,6 +5,9 @@ By Ryan Rowe
 The login system uses a PHP backend with time-based, unique hashed tokens stored as cookies. The default session time is 7 days and cookie expiration times are enforced.
 
 Credetials are to be stored in `/utils/credentials.json`
+
+Note: Login page runs in `O(n)` time where `n = number of users`.
+
 They must be valid json in the following format:
 ```
 [
